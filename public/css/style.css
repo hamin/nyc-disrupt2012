@@ -17,6 +17,37 @@ div.circle {
     height:50px;   
 }
 
+
+div.topic-small-circle {
+    -moz-border-radius: 50px/50px;
+    -webkit-border-radius: 50px 50px;
+    border-radius: 50px/50px;;
+    border:solid 21px #CCFF99; 
+		background-color: #CCFF99;
+    width:1px;
+    height:1px;   
+}
+
+div.influencer-small-circle {
+    -moz-border-radius: 50px/50px;
+    -webkit-border-radius: 50px 50px;
+    border-radius: 50px/50px;;
+    border:solid 21px #00FFFF; 
+		background-color: #00FFFF;
+    width:1px;
+    height:1px;   
+}
+
+div.influencee-small-circle {
+    -moz-border-radius: 50px/50px;
+    -webkit-border-radius: 50px 50px;
+    border-radius: 50px/50px;;
+    border:solid 21px #FF4D94; 
+		background-color: #FF4D94;
+    width:1px;
+    height:1px;   
+}
+
 div.circle img{
 	width: 55px;
 	height: 55px;
