@@ -5,15 +5,23 @@
 		<title>Sinatra Boilerplate</title>
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
+		<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
+		<script>
+		  $(document).ready(function() {
+		    $('img.ASTEROIDSYEAH').parent().parent().hide();
+		  });
+		  
+		</script>
 	</head>
 	
 	<body>
-		<div class="container">
+		<div id="wrapper" class="container">
 			<div class="row">
 				<h1>Sinatra Quickstart <small>Bootstrap your Sinatra Web Development</small></h1>
 				
 				<%= yield %>
 			</div>
 		</div>
+		<script type="text/javascript" src="/js/asteroids.js"></script>
 	</body>
 </html>
