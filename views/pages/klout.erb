@@ -2,4 +2,14 @@
   <strong>DESTROY!!!!!</strong>
 </p>  
 
+<% @topics.each do |topic| %>
+  <div class="circle">
+    <img src="<%= topic['imageUrl'] %>"/>
+  </div>  
+<% end %>
+
+<!-- <div class="circle"><img/></div>
+<div class="circle"><img/></div>
+<div class="circle"><img/></div>
+<div class="circle"><img/></div> -->
 <script type="text/javascript" src="/js/asteroids.js"></script>

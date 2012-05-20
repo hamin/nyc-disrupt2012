@@ -23,12 +23,12 @@ post '/klout' do
   klout_id = klout_client.identity( params[:username] )["id"]
   klout_user = klout_client.user(klout_id)
   @user_klout_score = klout_user["score"]["score"]
-  @topics = klout_client.user(klout_user,:topics)
-  @klout_influence = klout_client.user(klout_user,:influence)
-  @influencers = @klout_influence["myInfluencers"]
-  @influencees = @klout_influence["myInfluencees"]
-  @influencers_count = @klout_influence["myInfluencersCount"]
-  @influencees_count = @klout_influence["myInfluenceesCount"]
+  @topics = klout_client.user(klout_user["kloutId"],:topics)
+  # @klout_influence = klout_client.user(klout_user["kloutId"],:influence)
+  # @influencers = @klout_influence["myInfluencers"].map{|k| k["entity"] }
+  # @influencees = @klout_influence["myInfluencees"].map{|k| k["entity"] }
+  # @influencers_count = @klout_influence["myInfluencersCount"]
+  # @influencees_count = @klout_influence["myInfluenceesCount"]
   
   
   erb :klout
