@@ -21,3 +21,23 @@ div.circle img{
 	width: 55px;
 	height: 55px;
 }
+
+div.influencer-circle {
+    -moz-border-radius: 50px/50px;
+    -webkit-border-radius: 50px 50px;
+    border-radius: 50px/50px;;
+    border:solid 21px #00FFFF; 
+		background-color: #00FFFF;
+    width:50px;
+    height:50px;   
+}
+
+div.influencee-circle {
+    -moz-border-radius: 50px/50px;
+    -webkit-border-radius: 50px 50px;
+    border-radius: 50px/50px;;
+    border:solid 21px #FF4D94; 
+		background-color: #FF4D94;
+    width:50px;
+    height:50px;   
+}

@@ -8,8 +8,15 @@
   </div>  
 <% end %>
 
-<!-- <div class="circle"><img/></div>
-<div class="circle"><img/></div>
-<div class="circle"><img/></div>
-<div class="circle"><img/></div> -->
+<% @influencers.each_with_index do |influencer, i| %>
+  <div class="influencer-circle particle" style="width:<%= 50 + (i * 20)  %>px;height:<%= 50 + (i * 2) %>px">
+    <img src="<%= influencer['twitterUrl'] %>" />
+  </div>  
+<% end %>
+
+<% @influencees.each_with_index do |influencee, i| %>
+  <div class="influencee-circle particle" style="width:<%= 50 + (i * 20)  %>px;height:<%= 50 + (i * 2) %>px">
+    <img src="<%= influencee['twitterUrl'] %>" />
+  </div>  
+<% end %>
 <script type="text/javascript" src="/js/asteroids.js"></script>

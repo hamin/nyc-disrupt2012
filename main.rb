@@ -9,8 +9,6 @@ Dir["./app/models/*.rb"].each { |file| require file }
 Dir["./app/helpers/*.rb"].each { |file| require file }
 Dir["./app/controllers/*.rb"].each { |file| require file }
 
-klout_client = Klout::API.new # ENV['KLOUT_API_KEY']
-
 before "/*" do 
   if mobile_request?
     set :erb, :layout => :mobile
@@ -20,15 +18,27 @@ before "/*" do
 end
 
 post '/klout' do
-  klout_id = klout_client.identity( params[:username] )["id"]
-  klout_user = klout_client.user(klout_id)
+  klout_id = KloutClient.identity( params[:username] )["id"]
+  klout_user = KloutClient.user(klout_id)
   @user_klout_score = klout_user["score"]["score"]
-  @topics = klout_client.user(klout_user["kloutId"],:topics)
-  # @klout_influence = klout_client.user(klout_user["kloutId"],:influence)
-  # @influencers = @klout_influence["myInfluencers"].map{|k| k["entity"] }
-  # @influencees = @klout_influence["myInfluencees"].map{|k| k["entity"] }
-  # @influencers_count = @klout_influence["myInfluencersCount"]
-  # @influencees_count = @klout_influence["myInfluenceesCount"]
+  @topics = KloutClient.user(klout_user["kloutId"],:topics)
+  @klout_influence = KloutClient.user(klout_user["kloutId"],:influence)
+  
+  # Sorty Influencers and Influence by score
+  @influencers = @klout_influence["myInfluencers"].map{|k| k["entity"] }.sort{|x, y| x["payload"]["score"]["score"] <=> y["payload"]["score"]["score"]}
+  @influencees = @klout_influence["myInfluencees"].map{|k| k["entity"] }.sort{|x, y| x["payload"]["score"]["score"] <=> y["payload"]["score"]["score"]}
+  @influencers_count = @klout_influence["myInfluencersCount"]
+  @influencees_count = @klout_influence["myInfluenceesCount"]
+  
+  @influencers.each do |influencer|
+    tw_id = KloutClient.ks_identity(influencer["id"])["id"]
+    influencer["twitterUrl"] = Twitter.user(tw_id.to_i).profile_image_url
+  end
+  
+  @influencees.each do |influencee|
+    tw_id = KloutClient.ks_identity(influencee["id"])["id"]
+    influencee["twitterUrl"] = Twitter.user(tw_id.to_i).profile_image_url
+  end
   
   
   erb :klout
